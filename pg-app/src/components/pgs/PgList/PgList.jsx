@@ -25,19 +25,19 @@ let PgList=()=>{
             <div className="grid">
                 <div className="row">
                     <div className="col">
-                        <p className="h3">PG Buddy
+                        <p className="h3">Asset tracking
                         <Link to={"/pg/add"} className="btn btn-outline-primary ms-3">
-                            List PG
+                            List new asset
                             <i className="fa fa-plus-circle me-2"/>
                         </Link>
                         </p>
-                        <p>The best platform out there to explore PGs and hostels around you. Simply search a PG by its name or its location, or if you are a PG owner just click on "List PG" to showcase your property to the world. Remember, your dream PG is just one search away!!</p>
+                        <p>The best asset tracking platform</p>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col">
                         <div className="mb-1 mt-2">
-                            <input type="text" className="form-control" placeholder="Seach PG here" onChange={(event)=>{setSearchTerm(event.target.value);}}/>
+                            <input type="text" className="form-control" placeholder="Seach here" onChange={(event)=>{setSearchTerm(event.target.value);}}/>
                         </div>
                     </div>
                     <div className="col">
@@ -69,7 +69,7 @@ let PgList=()=>{
                 // <div className="row-4 mt-5 mb-5">
                     <div key={key} className="col-4 md-4 mt-3">
                             <div className="card" style={{ width: '21rem' ,height:"25rem"}}>
-                                <img variant="top" style={{ width: '21rem',height:"15rem" }} src={"/pg"+key%9+".jpg"}/>
+                                <img variant="top" style={{ width: '21rem',height:"15rem" }} src={"/pg"+key%9+".jpeg"}/>
                                 <div className="card-body">
                                     <div className="card-title">
                                         <h4>{val.pname}</h4>

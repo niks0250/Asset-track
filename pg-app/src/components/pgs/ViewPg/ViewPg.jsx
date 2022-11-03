@@ -17,8 +17,8 @@ let ViewPg=()=>{
         <div className="container">
             <div className="row">
                 <div className="col">
-                    <p className="h2 text-dark"> View PG</p>
-                    <p className="fst-italic">"PG life is full of crazy memories, with little bit of glory in comparison to many more fake theories.” Below are the details of the property that you wanted to explore!!</p>
+                    <p className="h2 text-dark"> View INFO</p>
+                    <p className="fst-italic"></p>
                 </div>
             </div>
         </div>
@@ -33,21 +33,21 @@ let ViewPg=()=>{
                 <div className="container">
                     <div className="row">
                         <div className="col-md-5">
-                            <img src={"/pg"+key%9+".jpg"} style={{ width: '28rem',height:"23rem" }}/>
+                            <img src={"/gta map.jpeg"} style={{ width: '28rem',height:"23rem" }}/>
                         </div>
                         <div className="col-md-7">
                             <ul className="list-group">
-                                <li className="list-group-item list-group-item-action fw-bold">Property Name : 
+                                <li className="list-group-item list-group-item-action fw-bold"> Name : 
                                 <span className="fw-normal">{" "+val.pname}</span></li>
-                                <li className="list-group-item list-group-item-action fw-bold">Property Address : 
+                                <li className="list-group-item list-group-item-action fw-bold">Driver : 
                                 <span className="fw-normal">{" "+val.paddress}</span></li>
-                                <li className="list-group-item list-group-item-action fw-bold">Property Facilities : 
+                                <li className="list-group-item list-group-item-action fw-bold">Latitude : 
                                 <span className="fw-normal">{" "+val.pfacilities}</span></li>
-                                <li className="list-group-item list-group-item-action fw-bold">Owner Name : 
+                                <li className="list-group-item list-group-item-action fw-bold">Longitude : 
                                 <span className="fw-normal">{" "+val.oname}</span></li>
-                                <li className="list-group-item list-group-item-action fw-bold">Owner Email : 
+                                <li className="list-group-item list-group-item-action fw-bold">Speed : 
                                 <span className="fw-normal">{" "+val.oemail}</span></li>
-                                <li className="list-group-item list-group-item-action fw-bold">Owner Contact Number : 
+                                <li className="list-group-item list-group-item-action fw-bold">Contact : 
                                 <span className="fw-normal">{" "+val.ocontact}</span></li>
                                 <div className="col">
                                     <Link to="/pg/list" className="btn btn-outline-primary mt-3">Home</Link>

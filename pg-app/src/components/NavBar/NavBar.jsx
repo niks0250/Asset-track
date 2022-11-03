@@ -6,7 +6,7 @@ let NavBar=()=>{
     <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
         <div className="container"> 
         <Link to={"/"} className="navbar-brand text-info">
-            PG <span className="text-primary">Buddy</span>
+            Asset <span className="text-primary">Tracking</span>
         </Link>
         </div>
     </nav>

@@ -29,8 +29,8 @@ let AddPg=()=>{
         <div className="container">
             <div className="row">
                 <div className="col">
-                    <p className="h4 text-dark">List PG</p>
-                    <p className="fst-italic">Enter below the details of your property and take the first step towards showcasing to the world what great property you have in house for them!!</p>
+                    <p className="h4 text-dark">List asset</p>
+                    <p className="fst-italic"></p>
                 </div>
             </div>
             <div className="row">
@@ -39,28 +39,28 @@ let AddPg=()=>{
                         <div className="mb-2">
                             <input type="text" onChange={(event)=>{
                                 setpname(event.target.value);
-                            }} className="form-control" placeholder="Property Name"/>
+                            }} className="form-control" placeholder=" Name"/>
                         </div>
                         <div className="mb-2">
                             <input type="text" onChange={(event)=>{
                                 setpaddress(event.target.value);
-                            }} className="form-control" placeholder="Property Address"/>
+                            }} className="form-control" placeholder="Driver"/>
                         </div>
                         <div className="mb-2">
                             <input type="text" 
                             onChange={(event)=>{
                                 setpfacilities(event.target.value);
-                            }} className="form-control" placeholder="Property Facilities"/>
+                            }} className="form-control" placeholder="Lat"/>
                         </div>
                         <div className="mb-2">
                             <input type="text" onChange={(event)=>{
                                 setoname(event.target.value);
-                            }} className="form-control" placeholder="Owner Name"/>
+                            }} className="form-control" placeholder="Long"/>
                         </div>
                         <div className="mb-2">
-                            <input type="email" onChange={(event)=>{
+                            <input type="text" onChange={(event)=>{
                                 setoemail(event.target.value);
-                            }} className="form-control" placeholder="Owner Email"/>
+                            }} className="form-control" placeholder="Speed"/>
                         </div>
                         <div className="mb-2">
                             <input type="number" onChange={(event)=>{
