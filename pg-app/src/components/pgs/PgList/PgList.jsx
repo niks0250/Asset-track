@@ -33,6 +33,10 @@ let PgList=()=>{
                             List new asset
                             <i className="fa fa-plus-circle me-2"/>
                         </Link>
+                        <Link to={"/pg/update"} className="btn btn-outline-primary ms-3">
+                            Update asset
+                            <i className="fa fa-plus-circle me-2"/>
+                        </Link>
                         </p>
                         <p>The best asset tracking platform</p>
                     </div>

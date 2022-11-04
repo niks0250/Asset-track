@@ -43,6 +43,30 @@ app.post("/insert",async (req,res)=>{
             console.log(err);
         }
 });
+app.post("/update",async (req,res)=>{
+    const pname=req.body.pname;
+    const paddress=req.body.paddress;
+    const pfacilities=req.body.pfacilities;
+    const oname=req.body.oname;
+    const oemail=req.body.oemail;
+    const ocontact=req.body.ocontact;
+    PgModel.findOne({pname: req.body.pname},function(err,pgmodel){
+        if(err){console.log('error in updating asset');return}
+
+        if(!pgmodel){
+                return res.redirect('/pg/list/');
+        }else{
+            pgmodel.pname=pname;
+            pgmodel.paddress=paddress;
+            pgmodel.pfacilities=pfacilities;
+            pgmodel.oname=oname;
+            pgmodel.oemail=oemail;
+            pgmodel.ocontact=ocontact;
+            pgmodel.save();
+            return res.redirect('back');
+        }
+    });
+});
 app.get("/read",async (req,res)=>{
     PgModel.find({},(err,result)=>{
         if(err)

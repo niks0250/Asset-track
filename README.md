@@ -1,10 +1,13 @@
-# PG-Buddy
-A full-fleged MERN based CRUD app that lets you look for your dream PG/ Hostel, or even add your own property as a hostel.
+# PG
+-abbreviation for Packed goods in context of assets 
+
+# Asset Tracking
+A full-fleged MERN based CRUD app that lets you look for your assets, or even add your own asset.
 
 # Features 
-1. Explore PGs and seeing their details.
-2. Option to upload your own property as a PG.
-3. Option to search through the list of PGs via their addresses.
+1. Explore assets and seeing their details.
+2. Option to upload your own asset.
+3. Option to search through the list of assets via their registration numbers.
 
 # How-to-use
 1. Clone the repository.
