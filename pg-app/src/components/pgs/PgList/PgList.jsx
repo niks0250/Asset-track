@@ -7,15 +7,18 @@ import Axios from "axios";
 let PgList=()=>{
 
     const [pglist,setpglist]=useState([]);
+    const [oglist,setoglist]=useState([]);
     const [searchterm,setSearchTerm]=useState("");
     useEffect(() => {
-        const newpglist = pglist.filter(value => value.paddress.toLowerCase().includes(searchterm.toLowerCase()));
+        const newpglist = oglist.filter(value => value.pname.toLowerCase().includes(searchterm.toLowerCase()));
         setpglist(newpglist);
       }, [searchterm])
 
     useEffect(()=>{
         Axios.get("http://localhost:5000/read").then((response)=>{
             setpglist(response.data);
+            setoglist(response.data);
+
         });
     },[])
     return(
