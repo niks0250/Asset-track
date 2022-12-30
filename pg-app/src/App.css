@@ -1,3 +1,8 @@
 body{
-    background-color: rgb(219, 245, 243) !important;
+    background-color: rgb(243, 239, 238) !important;
+}
+
+#map
+{
+    height: 100%;
 }
