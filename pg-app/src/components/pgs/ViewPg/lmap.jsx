@@ -10,35 +10,33 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-let myInterval,map;
-let arr=[[51.5,-0.09],[51.5,-0.089],[51.5,-0.088]];
-let i=0;
+let map;
+let lati=0,longi=0;
+
 
 let marker;
-function newMarker()
+function newMarker(lat,long)
 {
-    let lati=arr[i][0];
-    let longi = arr[i][1]; 
-    console.log(i);
+    // console.log(i);
+    lati=lat;
+    longi=long;
     if(marker)
     {
       map.removeLayer(marker)
     }
     marker=L.marker([lati,longi]).addTo(map);
     map.setView([lati,longi],16);
-    if(i==arr.length-1)
-    {
-      i=0;
-    }
-    else
-    {
-      i=i+1;
-    }
+    // if(i==arr.length-1)
+    // {
+    //   i=0;
+    // }
+    // else
+    // {
+    //   i=i+1;
+    // }
 }
-function LeafletMap() {
-
-    const [coords,setCoords] = useState([0,0]);
-
+function LeafletMap(props) {
+  // [coords,setCoords]=useState([0,0]);
 
   useEffect(() => {
     var container = L.DomUtil.get("map");
@@ -46,17 +44,26 @@ function LeafletMap() {
     if (container != null) {
     container._leaflet_id = null;
     }
+    // setCoords([props.lat,props.long]);
+    
     mapp();
+    
+      
+    
+    
 
     return()=>{
-      clearInterval(myInterval);
-  map.eachLayer(function (layer) {
+      // clearInterval(myInterval);
+    map.eachLayer(function (layer) {
     map.removeLayer(layer);
     });
     }
 
 
   }, []);
+  useEffect(()=>{
+    newMarker(props.lat,props.long);
+  },[props.lat,props.long]);
 
   const mapp = () => {
 
@@ -65,12 +72,12 @@ function LeafletMap() {
     map.eachLayer(function (layer) {
       map.removeLayer(layer);
       });
-    map.setView([51.5,-0.09],13);
+    map.setView([51.5,-0.09],16);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-
-    myInterval=setInterval(newMarker,3000);
+    
+    // myInterval=setInterval(newMarker,3000);
   };
 
   return <div id="map" ></div>;

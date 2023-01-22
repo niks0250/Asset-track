@@ -9,5 +9,13 @@ const pgSchema=mongoose.Schema({
     selectedfile: String,
 }
 );
-const Pg=mongoose.model('Pg',pgSchema);
-export default Pg;
+export const Pg=mongoose.model('Pg',pgSchema);
+
+const locationSchema=mongoose.Schema({
+    lati:Number,
+    long:Number,
+    key:Number,
+},);
+export const locations=mongoose.model('locations',locationSchema);
+
+

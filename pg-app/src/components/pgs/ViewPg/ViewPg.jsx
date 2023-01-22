@@ -2,12 +2,50 @@ import React from "react";
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import LeafletMap from './lmap'
+import Records from "./history";
 import ReactDOM from 'react-dom'
 import Axios from "axios";
 
+
+let myInterval,map;
+let arr=[[51.5,-0.09],[51.5,-0.089],[51.5,-0.088],[51.4995,-0.087],[51.4992,-0.086]];//[31.3260,75.5762],[30.9010,75.8573]];
+let i=0,pgid;
+let lati=arr[0][0],longi=arr[0][1],key=0;
+let coords={lati:0,long:0,key:0,},setCoords;
+function update()
+{
+    
+    lati=arr[i][0];
+    longi=arr[i][1];
+    Axios.post('http://localhost:5000/insertLocation',{
+        lati:lati,
+        long:longi,
+        key:pgid,
+    });
+
+    Axios.get('http://localhost:5000/getLiveLocation?key='+pgid).then((response)=>{
+
+        setCoords(response.data);
+    })
+    //console.log(i);
+    // setCoords([lati,longi]);
+
+    if(i==arr.length-1)
+    {
+      i=0;
+    }
+    else
+    {
+      i=i+1;
+    }
+}
+
+
 let ViewPg=()=>{
-    let {pgid}=useParams();
+    let obj=useParams();
+    pgid=obj.pgid;
     const [pglist,setpglist]=useState([]);
+    [coords,setCoords] = useState({lati:0,long:0,key:0,});
 
     useEffect(()=>{
         Axios.get("http://localhost:5000/read").then((response)=>{
@@ -15,6 +53,12 @@ let ViewPg=()=>{
             console.log(pglist);
         });
         
+        myInterval=setInterval(update,3000);
+        
+
+    return()=>{
+        clearInterval(myInterval);
+    }
         
     },[]);
     return(
@@ -41,7 +85,7 @@ let ViewPg=()=>{
                     <div className="row">
                         <div className="col-md-5">
                             {/* <img src={"/gta map.jpeg"} style={{ width: '28rem',height:"23rem" }}/> */}
-                            <LeafletMap key={key}/>
+                            <LeafletMap key={key} lat={coords.lati} long={coords.long}/>
 
                         </div>
                         <div className="col-md-7">
@@ -51,9 +95,9 @@ let ViewPg=()=>{
                                 <li className="list-group-item list-group-item-action fw-bold">Driver : 
                                 <span className="fw-normal">{" "+val.paddress}</span></li>
                                 <li className="list-group-item list-group-item-action fw-bold">Latitude : 
-                                <span className="fw-normal">{" "+val.pfacilities}</span></li>
+                                <span className="fw-normal">{" "+coords.lati}</span></li>
                                 <li className="list-group-item list-group-item-action fw-bold">Longitude : 
-                                <span className="fw-normal">{" "+val.oname}</span></li>
+                                <span className="fw-normal">{" "+coords.long}</span></li>
                                 <li className="list-group-item list-group-item-action fw-bold">Speed : 
                                 <span className="fw-normal">{" "+val.oemail}</span></li>
                                 <li className="list-group-item list-group-item-action fw-bold">Contact : 
@@ -62,9 +106,14 @@ let ViewPg=()=>{
                                     <Link to="/pg/list" className="btn btn-outline-primary mt-3">Home</Link>
                                 </div>
                             </ul>
+
+                            <Records id={key}/>
+                            
                         </div>
+
                     </div>
                 </div>
+
             </section>
                 // </div>
                 );

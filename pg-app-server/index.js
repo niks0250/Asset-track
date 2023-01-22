@@ -3,7 +3,9 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import postRoutes from "./routes/posts.js";
-import PgModel from "./models/postMessage.js"
+// import PgModel from "./models/postMessage.js"
+import {locations} from "./models/postMessage.js"
+import {Pg as PgModel} from "./models/postMessage.js"
 
 const app=express();
 
@@ -23,6 +25,39 @@ const PORT = process.env.PORT || 5000;
 //     .catch((error)=>console.log(error.message));
 mongoose.connect(CONNECTION_URL).then(()=>app.listen(PORT,()=>console.log('Server running on port : 5000'))).catch((error)=>console.log(error.message));
 // mongoose.set('useFindAndModify', false);
+app.post("/insertLocation",async (req,res)=>{
+    const lat=req.body.lati;
+    const long=req.body.long;
+    const key=req.body.key;
+
+    const loc=new locations({lati:lat,long:long,key:key,})
+    try{
+        await loc.save();
+        console.log(loc);
+        console.log("saving location in db");
+        res.end();
+    }
+    catch{
+        console.log(err);
+        res.end();
+    }
+});
+app.get("/getLiveLocation",async (req,res)=>{
+    locations.find({key:req.query.key}).sort({_id: -1}).limit(1).then((products) => {
+        console.log(products)
+        products=products[0];
+        console.log("this is get request for location")
+        let slice={lati:products.lati,long:products.long,key:products.key,};
+        res.send(slice);
+    })
+})
+app.get("/getLocation",async (req,res)=>{
+    locations.find({key:req.query.key}).sort({_id: -1}).then((locations) => {
+        console.log(locations)
+        console.log("this is get request for location")
+        res.send(locations);
+    })
+})
 app.post("/insert",async (req,res)=>{
     const pname=req.body.pname;
     const paddress=req.body.paddress;
