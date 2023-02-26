@@ -17,7 +17,11 @@ let lati=0,longi=0;
 let marker;
 function newMarker(lat,long)
 {
-    // console.log(i);
+    console.log([lati,longi,lat,long]);
+    if(lati!=0 && longi!=0 &&lat&&long&&map)
+    {
+      L.polyline([[lati,longi],[lat,long]]).addTo(map);
+    }
     lati=lat;
     longi=long;
     if(marker)
@@ -25,7 +29,7 @@ function newMarker(lat,long)
       map.removeLayer(marker)
     }
     marker=L.marker([lati,longi]).addTo(map);
-    map.setView([lati,longi],16);
+    map.setView([lati,longi]);
     // if(i==arr.length-1)
     // {
     //   i=0;
@@ -68,7 +72,8 @@ function LeafletMap(props) {
   const mapp = () => {
 
     // The <div id="map"> must be added to the dom before calling L.map('map')
-    map = new L.map('map');
+    map = new L.map('map',{dragging:true});
+    
     map.eachLayer(function (layer) {
       map.removeLayer(layer);
       });

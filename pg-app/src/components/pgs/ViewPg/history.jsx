@@ -24,7 +24,7 @@ function Records(props){
         </thead>
         <tbody>
             {locList.map((val)=>{
-                console.log(val);
+               
                 return(
                     <tr>
                         <td>{val.key}</td>

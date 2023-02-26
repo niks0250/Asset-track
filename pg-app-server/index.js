@@ -32,7 +32,7 @@ app.post("/insertLocation",async (req,res)=>{
 
     const loc=new locations({lati:lat,long:long,key:key,})
     try{
-        await loc.save();
+         loc.save();
         console.log(loc);
         console.log("saving location in db");
         res.end();
@@ -46,15 +46,15 @@ app.get("/getLiveLocation",async (req,res)=>{
     locations.find({key:req.query.key}).sort({_id: -1}).limit(1).then((products) => {
         console.log(products)
         products=products[0];
-        console.log("this is get request for location")
+        // console.log("this is get request for location")
         let slice={lati:products.lati,long:products.long,key:products.key,};
         res.send(slice);
     })
 })
 app.get("/getLocation",async (req,res)=>{
     locations.find({key:req.query.key}).sort({_id: -1}).then((locations) => {
-        console.log(locations)
-        console.log("this is get request for location")
+        // console.log(locations)
+        // console.log("this is get request for location")
         res.send(locations);
     })
 })
