@@ -2,14 +2,14 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import postRoutes from "./routes/posts.js";
-// import PgModel from "./models/postMessage.js"
+import authRoutes from './routes/auth.js';
 import {locations} from "./models/postMessage.js"
+import {User} from "./models/userModel.js"
 import {Pg as PgModel} from "./models/postMessage.js"
 
 const app=express();
 
-
+app.use('/auth', authRoutes);
 // app.use('/posts',postRoutes);
 app.use(express.json());
 
