@@ -13,7 +13,6 @@ let PgList=()=>{
         const newpglist = oglist.filter(value => value.pname.toLowerCase().includes(searchterm.toLowerCase()));
         setpglist(newpglist);
       }, [searchterm])
-
     useEffect(()=>{
         Axios.get("http://localhost:5000/read").then((response)=>{
             setpglist(response.data);
@@ -21,6 +20,11 @@ let PgList=()=>{
 
         });
     },[])
+    const signOut=()=>{
+        Axios.get("http://localhost:5000/auth/signout").then((response)=>{
+            console.log(response);
+        });
+    }
     return(
     <>
     <section className="pg-search p-3">
@@ -37,6 +41,10 @@ let PgList=()=>{
                             Update asset
                             <i className="fa fa-plus-circle me-2"/>
                         </Link>
+                        <button type="submit" onClick={signOut} className="btn btn-outline-primary ms-3">
+                            Sign Out
+                            <i className="fa fa-plus-circle me-2"/>
+                        </button>
                         </p>
                         <p>The best asset tracking platform</p>
                     </div>

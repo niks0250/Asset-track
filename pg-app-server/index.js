@@ -2,23 +2,38 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import postRoutes from "./routes/posts.js";
+// import postRoutes from "./routes/posts.js";
 // import PgModel from "./models/postMessage.js"
 import {locations} from "./models/postMessage.js"
 import {Pg as PgModel} from "./models/postMessage.js"
 
+import session from 'express-session';
+
 const app=express();
-
-
+import passport from "./config/passport-local-strategy.js";
+import authRoute from './routes/auth.js';
+import cookieParser from 'cookie-parser';
 // app.use('/posts',postRoutes);
-app.use(express.json());
 
+app.use(express.json());
 app.use(bodyParser.json({limit:"30mb", extended: true }));
 app.use(bodyParser.urlencoded({limit:"30mb", extended: true }));
-app.use(cors());
-
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+    methods: "GET,POST,PUT,DELETE",
+}));
+app.use(session({
+    secret: 'blahsomething',
+    resave : true,
+    saveUninitialized: true
+  
+  }));
+app.use(cookieParser("blahsomething"));
+app.use(passport.initialize());
+app.use(passport.session());
 const CONNECTION_URL='mongodb+srv://vinayak:226Kanoon@cluster0.zwercw7.mongodb.net/pg?retryWrites=true&w=majority'
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 // mongoose.connect(CONNECTION_URL,{ useNewUrlParser: true,useUnifiedTopology: true})
 //     .then(()=>app.listen(PORT,()=>console.log('Server running on port : ${PORT}')))
@@ -42,6 +57,9 @@ app.post("/insertLocation",async (req,res)=>{
         res.end();
     }
 });
+
+app.use('/auth',authRoute);
+
 app.get("/getLiveLocation",async (req,res)=>{
     locations.find({key:req.query.key}).sort({_id: -1}).limit(1).then((products) => {
         console.log(products)
@@ -98,7 +116,6 @@ app.post("/update",async (req,res)=>{
             pgmodel.oemail=oemail;
             pgmodel.ocontact=ocontact;
             pgmodel.save();
-            return res.redirect('back');
         }
     });
 });

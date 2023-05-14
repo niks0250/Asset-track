@@ -5,7 +5,7 @@ let NavBar=()=>{
     <>
     <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
         <div className="container"> 
-        <Link to={"/"} className="navbar-brand text-info">
+        <Link to={"/pg/signin"} className="navbar-brand text-info">
             Asset <span className="text-primary">Tracking</span>
         </Link>
         </div>
