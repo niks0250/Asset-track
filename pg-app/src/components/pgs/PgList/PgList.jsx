@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Axios from "axios";
-
+import AuthContext from "../../../context/AuthContext";
 
 let PgList=()=>{
-
+    const { loggedIn } = useContext(AuthContext);
     const [pglist,setpglist]=useState([]);
     const [oglist,setoglist]=useState([]);
     const [searchterm,setSearchTerm]=useState("");
@@ -23,7 +23,7 @@ let PgList=()=>{
     },[])
     return(
     <>
-    <section className="pg-search p-3">
+    {loggedIn && (<><section className="pg-search p-3">
         <div className="container">
             <div className="grid">
                 <div className="row">
@@ -44,7 +44,7 @@ let PgList=()=>{
                 <div className="row">
                     <div className="col">
                         <div className="mb-1 mt-2">
-                            <input type="text" className="form-control" placeholder="Seach here" onChange={(event)=>{setSearchTerm(event.target.value);}}/>
+                            <input type="text" className="form-control" placeholder="Search here" onChange={(event)=>{setSearchTerm(event.target.value);}}/>
                         </div>
                     </div>
                     <div className="col">
@@ -96,7 +96,8 @@ let PgList=()=>{
             })};
             </div>
         </div>
-    </section>
+    </section></>) }
+    
     </>
     )
 };

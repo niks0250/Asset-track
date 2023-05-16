@@ -76,25 +76,25 @@ router.post("/login", async (req, res) => {
 
     //validation
     if (!email || !password) {
-      res.json({
+      return res.status(400).json({
         success: false,
         message: "The email and password must be passed for login",
-      });
+      }).send();
     }
     const currUser = await user.findOne({ email: email });
     if (!currUser) {
-      res.json({
+      return res.status(400).json({
         success: false,
         message: "Either the email or the password entered is wrong",
-      });
+      }).send();
     }
 
     const passwordCheck = await bcrypt.compare(password, currUser.passwordHash);
     if (!passwordCheck) {
-      res.json({
+      return res.status(400).json({
         success: false,
         message: "Either the email or the password entered is wrong",
-      });
+      }).send();
     }
 
     //token generation
