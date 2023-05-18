@@ -18,22 +18,22 @@ router.post("/", async (req, res) => {
     const passwordHash = await bcrypt.hash(password, salt);
 
     if (!email || !password || !confirmPassword) {
-      res.status(400).json({
+      return res.status(201).json({
         success: false,
         message: "Enter all the required values",
       });
     } else if (password.length < 6) {
-      res.status(400).json({
+      return res.status(201).json({
         success: false,
         message: "The password lenght must be at least 6 characters",
       });
     } else if (password !== confirmPassword) {
-      res.status(400).json({
+      return res.status(201).json({
         success: false,
         message: "The password and the confirm password must be the same",
       });
     } else if (currUser) {
-      res.status(400).json({
+      return res.status(201).json({
         success: false,
         message: "A user with this email id already exists",
       });
@@ -76,14 +76,14 @@ router.post("/login", async (req, res) => {
 
     //validation
     if (!email || !password) {
-      return res.status(400).json({
+      return res.status(201).json({
         success: false,
         message: "The email and password must be passed for login",
       }).send();
     }
     const currUser = await user.findOne({ email: email });
     if (!currUser) {
-      return res.status(400).json({
+      return res.status(201).json({
         success: false,
         message: "Either the email or the password entered is wrong",
       }).send();
@@ -91,7 +91,7 @@ router.post("/login", async (req, res) => {
 
     const passwordCheck = await bcrypt.compare(password, currUser.passwordHash);
     if (!passwordCheck) {
-      return res.status(400).json({
+      return res.status(201).json({
         success: false,
         message: "Either the email or the password entered is wrong",
       }).send();
