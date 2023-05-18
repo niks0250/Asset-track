@@ -18,7 +18,13 @@ export default function Register() {
         password,
         confirmPassword,
       };
-      await axios.post("http://localhost:5000/auth/", formData);
+      const response = await axios.post("http://localhost:5000/auth/", formData);
+      console.log(response);
+      if(response.data.success == false)
+      {
+        alert(`${response.data.message}`)
+        return;
+      }
       await func();
       navigate("/pg/list");
       func();
@@ -68,22 +74,24 @@ export default function Register() {
         >
           <div
             style={{
-              backgroundColor: "#00ffff",
+              backgroundColor: "white",
               display: "flex",
               flexDirection: "column",
               width: "42%",
               alignItems: "center",
-              marginTop: "10px",
+              marginTop: "20px",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1)",
+              borderRadius: "5%"
             }}
           >
             <div
               style={{
                 fontSize: "30px",
-                fontWeight: "500",
-                fontFamily: "cursive",
-                color: "blue",
+                fontWeight: "700",
+                // fontFamily: "cursive",
+                color: "#0099ff",
                 paddingTop: "30px",
-                textDecoration: "underline",
+                // textDecoration: "underline",
                 marginBottom: "0px",
               }}
             >
@@ -98,7 +106,7 @@ export default function Register() {
                 width: "80%",
               }}
             >
-              <p
+              {/* <p
                 style={{
                   color: "Blue",
                   fontSize: "20px",
@@ -108,16 +116,18 @@ export default function Register() {
                 }}
               >
                 Email
-              </p>
+              </p> */}
               <input
                 type="email"
                 value={email}
-                placeholder="Enter the email"
+                placeholder="Email"
                 onChange={(e) => {
                   setemail(e.target.value);
                 }}
+                pattern="[a-z.]*[@]\bsac.isro.gov.in"
+                style={{ padding: "16px 10px", borderRadius: "2%", border: "1px solid grey", marginBottom: "30px"}}
               />
-              <p
+              {/* <p
                 style={{
                   color: "Blue",
                   fontSize: "20px",
@@ -127,16 +137,17 @@ export default function Register() {
                 }}
               >
                 Password
-              </p>
+              </p> */}
               <input
                 type="password"
                 value={password}
-                placeholder="Enter the password"
+                placeholder="Password"
                 onChange={(e) => {
                   setpassword(e.target.value);
                 }}
+                style={{ padding: "16px 10px", borderRadius: "2%", border: "1px solid grey"}}
               />
-              <p
+              {/* <p
                 style={{
                   color: "Blue",
                   fontSize: "20px",
@@ -146,29 +157,31 @@ export default function Register() {
                 }}
               >
                 Confirm Password
-              </p>
+              </p> */}
               <input
                 type="password"
                 value={confirmPassword}
-                placeholder="Enter the password again"
+                placeholder="Verify password"
                 onChange={(e) => {
                   setconfirmPassword(e.target.value);
                 }}
+                style={{ marginTop: "30px", paddingTop: "0px", padding: "16px 10px", borderRadius: "2%", border: "1px solid grey"}}
               />
               <button
                 type="submit"
                 style={{
                   color: "white",
-                  backgroundColor: " #0099ff",
-                  fontWeight: "600",
-                  // border: "1.4px solid blue",
-                  marginTop: "40px",
-                  borderRadius: "24px",
-                  width: "30%",
-                  padding: "1vh 1vh",
-                  textDecoration: "none",
-                  fontWeight: "600",
-                  marginLeft: "130px",
+                backgroundColor: " #0099ff",
+                fontWeight: "600",
+                // border: "1.4px solid blue",
+                marginTop: "40px",
+                borderRadius: "24px",
+                width: "100%",
+                padding: "1vh 1vh",
+                textDecoration: "none",
+                fontWeight: "600",
+                // marginLeft: "130px",
+                fontSize: "20px"
                 }}
               >
                 Register

@@ -15,8 +15,8 @@ export default function Logout() {
     <button
       onClick={logout}
       style={{
-        color: "blue",
-        backgroundColor: "#1affff",
+        color: "white",
+        backgroundColor: "#008ae6",
         fontWeight: "600",
         // border: "1.4px solid blue",
         borderRadius: "24px",

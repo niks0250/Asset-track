@@ -9,8 +9,17 @@ let NavBar = () => {
     <>
       <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
         <div className="container">
-          <Link to={"/"} className="navbar-brand text-info">
-            Asset <span className="text-primary">Tracking</span>
+          <Link
+            to={"/"}
+            className="navbar-brand text-info"
+            style={{ color: "red" }}
+          >
+            Nav
+            <span 
+            // className="text-primary" 
+            style={{ color: "#008ae6" }}>
+              -IC
+            </span>
           </Link>
           <span>
             {loggedIn == false && (
@@ -18,14 +27,14 @@ let NavBar = () => {
                 <Link
                   to="/Register"
                   style={{
-                    color: "blue",
-                    backgroundColor: "#1affff",
+                    color: "white",
+                    backgroundColor: "#008ae6",
                     fontWeight: "600",
                     // border: "1.4px solid blue",
                     borderRadius: "24px",
                     padding: "1vh 3vh",
                     textDecoration: "none",
-                    fontWeight: "600"
+                    fontWeight: "600",
                   }}
                 >
                   Register
@@ -34,16 +43,21 @@ let NavBar = () => {
             )}
             {loggedIn == false && (
               <>
-                <Link to="/Login" style={{
-                    color: "blue",
-                    backgroundColor: "#1affff",
+                <Link
+                  to="/Login"
+                  style={{
+                    color: "white",
+                    backgroundColor: "#008ae6",
                     fontWeight: "600",
                     // border: "1.4px solid blue",
                     borderRadius: "24px",
                     padding: "1vh 3vh",
                     textDecoration: "none",
                     marginLeft: "20px",
-                  }}>Login</Link>
+                  }}
+                >
+                  Login
+                </Link>
               </>
             )}
             {loggedIn == true && (

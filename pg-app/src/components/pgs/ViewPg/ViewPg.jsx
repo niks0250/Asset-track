@@ -66,7 +66,7 @@ let ViewPg=()=>{
         <div className="container">
             <div className="row">
                 <div className="col">
-                    <p className="h2 text-dark"> View INFO</p>
+                    <p className="h2 text-dark"> Tracking Info</p>
                     <p className="fst-italic"></p>
                 </div>
             </div>
@@ -101,7 +101,7 @@ let ViewPg=()=>{
                                 <li className="list-group-item list-group-item-action fw-bold">Contact : 
                                 <span className="fw-normal">{" "+val.ocontact}</span></li>
                                 <div className="col">
-                                    <Link to="/pg/list" className="btn btn-outline-primary mt-3">Home</Link>
+                                    <Link to="/pg/list" className="btn btn-outline-primary mt-3" style={{ color: "white", backgroundColor: "#008ae6", fontWeight: "600", marginLeft: "89%"}}>Home</Link>
                                 </div>
                             </ul>
 
