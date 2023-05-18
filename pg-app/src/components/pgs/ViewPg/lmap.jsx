@@ -69,19 +69,44 @@ function LeafletMap(props) {
     newMarker(props.lat,props.long);
   },[props.lat,props.long]);
 
-  const mapp = () => {
+  // const mapp = () => {
 
-    // The <div id="map"> must be added to the dom before calling L.map('map')
-    map = new L.map('map',{dragging:true});
+  //   // The <div id="map"> must be added to the dom before calling L.map('map')
+  //   map = new L.map('map',{dragging:true});
     
+  //   map.eachLayer(function (layer) {
+  //     map.removeLayer(layer);
+  //     });
+  //   map.setView([51.5,-0.09],16);
+  //   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  //       attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  //   }).addTo(map);
+    
+  //   // myInterval=setInterval(newMarker,3000);
+  // };
+
+  
+  const mapp = () => {
+    // The <div id="map"> must be added to the dom before calling L.map('map')
+    map = new L.map("map", { dragging: true });
+
     map.eachLayer(function (layer) {
       map.removeLayer(layer);
-      });
-    map.setView([51.5,-0.09],16);
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+ 
+    map.setView([51.5, -0.09], 16);
+    // L.tileLayer("http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}.png", {
+    //   attribution:
+    //     '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    // }).addTo(map);
+
+
+    L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+      maxZoom: 19,
+      subdomains:['mt0'],
+      attribution: 'GoogleMap'
     }).addTo(map);
-    
+
     // myInterval=setInterval(newMarker,3000);
   };
 
