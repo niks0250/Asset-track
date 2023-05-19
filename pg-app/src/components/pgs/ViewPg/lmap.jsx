@@ -94,17 +94,19 @@ function LeafletMap(props) {
       map.removeLayer(layer);
     });
  
-    map.setView([51.5, -0.09], 16);
+    map.setView([51.5, -0.09], 15);
     // L.tileLayer("http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}.png", {
     //   attribution:
     //     '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     // }).addTo(map);
 
 
-    L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-      maxZoom: 19,
-      subdomains:['mt0'],
-      attribution: 'GoogleMap'
+    L.tileLayer.wms("https://bhuvan-vec1.nrsc.gov.in/bhuvan/gwc/service/wms/?",{
+      layers: 'india3',
+      format: 'image/jpeg',
+      transparent : true,
+      version: '1.1.0',
+      attribution: 'Bhuvan/ISRO'
     }).addTo(map);
 
     // myInterval=setInterval(newMarker,3000);
